@@ -34,8 +34,8 @@
                     <div class="form-group">
                         <label for="gender">¿Que estoy buscando?</label>
                         <select id="gender" name="gender" class="input-field" required>
-                            <option value="" disable selected>¿Que bsucas?</option>
-                            <option value='F'>Bsuco mujer</option>
+                            <option value="" disable selected>¿Que buscas?</option>
+                            <option value='F'>Busco mujer</option>
                             <option value='M'>Busco hombre</option>
                             <option value="todos">Busco ambos</option>
                         </select>

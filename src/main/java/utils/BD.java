@@ -12,14 +12,14 @@ public class BD {
 
     private static Connection conn;
 
-    public static Connection getConnection() {
-        if (conn == null) {
+    public static Connection getConnection() throws SQLException{
+        if (conn == null || conn.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/vitomaite10", "root", ".Nala2004");
-            } catch (ClassNotFoundException | SQLException e) {
-                System.err.println("Error al conectar: " + e.getMessage());
+            } catch (ClassNotFoundException e) {
+                throw new SQLException("Error al cargar el driver de MySQL ", e);
             }
         }
         return conn;
