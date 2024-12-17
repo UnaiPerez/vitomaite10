@@ -23,51 +23,73 @@ import utils.BD;
 
 @WebServlet(name = "ServletBusquedaBasica", urlPatterns = {"/ServletBusquedaBasica"})
 public class ServletBusquedaBasica extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Los parametros del formulario de la busqueda basica
         String gender = request.getParameter("gender");
         int ageMin = Integer.parseInt(request.getParameter("ageMin"));
         int ageMax = Integer.parseInt(request.getParameter("ageMax"));
         String city = request.getParameter("city");
-        
 
-        //conexion con la base de datos
-       String query = "Select * FROM usuario WHERE (genero = ? OR ? = 'todos') and edad BETWEEN ? and ? and ciudad = ?";
+        String query;
+
+        if (gender == null || gender.equalsIgnoreCase("todos")) {
+            query = "SELECT * FROM usuario WHERE edad BETWEEN ? AND ? AND ciudad = ?";
+        } else {
+            query = "SELECT * FROM usuario WHERE genero = ? AND edad BETWEEN ? AND ? AND ciudad = ?";
+        }
+
         try (Connection conn = BD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query))
-        {
-            
-            ps.setString(1, gender);
-            ps.setString(2, gender);
-            ps.setInt(3, ageMin);
-            ps.setInt(4, ageMax);
-            ps.setString(5, city);
-            
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            if (gender == null || gender.equalsIgnoreCase("todos")) {
+                ps.setInt(1, ageMin);
+                ps.setInt(2, ageMax);
+                ps.setString(3, city);
+            } else {
+                ps.setString(1, gender);
+                ps.setInt(2, ageMin);
+                ps.setInt(3, ageMax);
+                ps.setString(4, city);
+            }
+
             ResultSet rs = ps.executeQuery();
             ArrayList<String> resultados = new ArrayList<>();
-            while(rs.next()){
+
+            while (rs.next()) {
                 String nombre = rs.getString("nombre");
                 int edad = rs.getInt("edad");
                 String foto = rs.getString("foto");
-                
-                resultados.add("<div class='user-card'><img class='user-photo' src='"+ foto + "'alt= 'Foto usuario'><h3>"+ nombre +
-                            ", "+ edad + " años</h3><a href='login.jsp'>Ver mas detalles</a></div>");
+
+                resultados.add("<div class='user-card'>" +
+                        "<img class='user-photo' src='" + foto + "' alt='Foto usuario'>" +
+                        "<h3>" + nombre + ", " + edad + " años</h3>" +
+                        "<a href='login.jsp'>Ver más detalles</a></div>");
             }
-            
+
             request.setAttribute("resultados", resultados);
             request.getRequestDispatcher("resultados.jsp").forward(request, response);
-            
+
         } catch (SQLException ex) {
-           response.getWriter().println("Error en la base da datos: "+ ex.getMessage());
+            response.getWriter().println("Error en la base de datos: " + ex.getMessage());
         }
     }
 
     @Override
-    public String getServletInfo() {
-        return "Busqueda basica de usuarios, para usuarios no logueados";
-    }// </editor-fold>
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Servlet que realiza búsqueda básica.";
+    }
 }
+
+

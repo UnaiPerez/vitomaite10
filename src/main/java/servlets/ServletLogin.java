@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.BD;
@@ -27,8 +28,7 @@ import utils.BD;
 @WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
 public class ServletLogin extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -60,8 +60,15 @@ public class ServletLogin extends HttpServlet {
                           return;
                 }
                 //login existoso
+                
                 String nombre = rsLoginCheck.getString("nombre");
-                request.getSession().setAttribute("loggedInUser", nombre);
+                String foto = rsLoginCheck.getString("foto");
+                
+                HttpSession session = request.getSession();
+                
+                session.setAttribute("email", email);
+                session.setAttribute("nombre", nombre);
+                session.setAttribute("foto", foto);
                 response.sendRedirect("pantallaLogueado.jsp");
         } catch (SQLException ex) {
             request.setAttribute("errorMessage", "Hubo un error al acceder a la base de datos");
@@ -71,8 +78,20 @@ public class ServletLogin extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
     public String getServletInfo() {
-        return "Login de un usuario";
-    }// </editor-fold>
+        return "Servlet que realiza búsqueda básica.";
+    }
 
 }

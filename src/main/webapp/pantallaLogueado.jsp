@@ -23,22 +23,20 @@
             <h1 class='header-title'>VitoMaite</h1>
             <div class='userInfo'>
                 <%
-                    String loggedInUser = (session != null) ? (String) session.getAttribute("loggedInUser") : null;
-                    if(loggedInUser != null){
-                    
-                        String nombre = (String) session.getAttribute("nombre");
-                        String foto = (String) session.getAttribute("foto");
+                    String nombre = (String) session.getAttribute("nombre");
+                    String foto = (String) session.getAttribute("foto");
+                    if(nombre != null){
                 %>
-                    <span id='username'>¡Hola, <%= loggedInUser %>!</span>
+                    <span id='username'>¡Hola, <%= nombre %>!</span>
                     <img id='userPhoto' class='userPhoto' src="<%= foto %>" alt='Foto de <%= nombre %>'>
-                    <a href='ServletLogout' class="btn-logout">Logout</a>
+                    <form action="ServletLogout" method='post'>
+                        <button type="submit" class='btn-logout'>Logout</button>
+                    </form>
                     <% } else { 
                        
                     %>
-                    <script>
-                        alert("Debes iniciar sesion primero.");
-                        window.location.href = "login.jsp";
-                    </script>
+                       response.sendRedirect("login.jsp");
+                       return;
                     <% } %>
             </div>
         </header>
@@ -69,12 +67,12 @@
      <main class='main-content'>
          <div class='search-container'>
              <h2>Buscar solteros/as</h2>
-             <form action='servletBusquedaLogueado' methos='get'>
+             <form action='servletBusquedaLogueado' method='get'>
                  <div class='form-group'>
                      <label for='gender'>¿Que estoy buscando?</label>
                      <select id='gender' name="gender" class="input-field">
-                         <option value="" required>¿Que buscas?</option>
-                         <option valeu='F'>Busco mujer</option>
+                         <option value="" disabled selected>¿Que buscas?</option>
+                         <option value='F'>Busco mujer</option>
                          <option value='M'>Busco hombre</option>
                          <option value="todos">Busco ambos</option>
                      </select>
@@ -90,6 +88,7 @@
                  <div class="form-group">
                      <label for="ciudad">Ciudad</label>
                      <select id="city" name='city' class='input-field'>
+                         <option value="" disabled selected>Selecciona una ciudad</option>
                          <option value='Vitoria'>Vitoria</option>
                          <option value='Bilbao'>Bilbao</option>
                          <option value='Donosti'>Donosti</option>
