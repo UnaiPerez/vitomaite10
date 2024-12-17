@@ -67,7 +67,7 @@
      <main class='main-content'>
          <div class='search-container'>
              <h2>Buscar solteros/as</h2>
-             <form action='servletBusquedaLogueado' method='get'>
+             <form action='ServletBusquedaLogueado' method='get'>
                  <div class='form-group'>
                      <label for='gender'>¿Que estoy buscando?</label>
                      <select id='gender' name="gender" class="input-field">
