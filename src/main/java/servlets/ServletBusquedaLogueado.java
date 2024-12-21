@@ -31,6 +31,10 @@ public class ServletBusquedaLogueado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
             HttpSession session = request.getSession(false);
+            
+            // Limpiar resultados previos de la sesión
+            session.removeAttribute("resultados");
+            
             String loggedEmail = (String) session.getAttribute("email");
 
             String gender = request.getParameter("gender");
@@ -69,8 +73,8 @@ public class ServletBusquedaLogueado extends HttpServlet {
                             + "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
                 }
                 
-                request.setAttribute("resultados", resultados);
-                request.getRequestDispatcher("resultadosLogueado.jsp").forward(request, response);
+                session.setAttribute("resultados", resultados);
+                response.sendRedirect("resultadosLogueado.jsp");
                 
         } catch(SQLException ex){
             response.getWriter().println("Error en la base de datos: " + ex.getMessage());

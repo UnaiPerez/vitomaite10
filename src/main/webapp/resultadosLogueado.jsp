@@ -31,7 +31,7 @@
     <main class='main-content'>
         <div id="results-container">
             <%
-                ArrayList<String> resultados = (ArrayList<String>) request.getAttribute("resultados");
+                ArrayList<String> resultados = (ArrayList<String>) session.getAttribute("resultados");
                 if(resultados != null && !resultados.isEmpty()){
                     for (String resultado : resultados){
                         out.println(resultado);
