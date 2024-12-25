@@ -102,3 +102,12 @@ h2 {
 .btn-action:hover {
     background-color: #6c757d;
 }
+
+.mensaje {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

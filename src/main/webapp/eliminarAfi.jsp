@@ -27,6 +27,16 @@
         
         <main class='main-content'>
             <h2>Seleccione las aficiones que quiere eliminar</h2>
+            
+            <%
+            String mensaje = (String) request.getAttribute("mensaje");
+            if (mensaje != null) {
+        %>
+            <div class="mensaje"><%= mensaje %></div>
+        <%
+            }
+        %>
+        
             <form id="form-del-aficiones" action="ServletEliminarAficiones" method='post'>
                 <div id="aficiones-container">
                     <%
