@@ -35,24 +35,24 @@ public class ServletCargarAficionesUsuario extends HttpServlet {
         }
         
         String email = (String) session.getAttribute("email");
-        String query = "SELECT afi.id, afi.nombre "
-                     + "FROM aficion afi JOIN usuAfi ua on afi.id = ua.idAficion "
-                     + "WHERE emailUsuario = ?";
+       String query = "SELECT * FROM aficion WHERE id IN (SELECT idAficion FROM usuAfi WHERE emailUsuario = ?)";
         
         try(Connection conn = BD.getConnection()){
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             
-            List<String[]> aficionesUsu = new ArrayList<>();
+            List<String[]> aficionesUsuario = new ArrayList<>();
             while(rs.next()){
                 String id = rs.getString("id");
                 String nombre = rs.getString("nombre");
-                aficionesUsu.add(new String[]{id, nombre});
+                aficionesUsuario.add( new String[]{id, nombre});
             }
             
-            request.setAttribute("aficionesUsu", aficionesUsu);
+            request.setAttribute("aficionesUsuario", aficionesUsuario);
             request.getRequestDispatcher("eliminarAfi.jsp").forward(request, response);
+        } catch (SQLException e){
+            response.getWriter().println("Error en la base de datos: " + e.getMessage());
         }
     }
 

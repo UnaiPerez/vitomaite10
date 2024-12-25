@@ -39,8 +39,6 @@
         <%
             }
         %>
-        
-        
                 <form id="form-add-aficiones" method="POST" action="ServletAnadirAficiones">
 
                     <div id="aficiones-container">

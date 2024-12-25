@@ -17,7 +17,7 @@
             }
             #map {
                 width: 100%;
-                height: 300px; /* Aseguramos que el mapa sea suficientemente grande */
+                height: 300px; 
                 margin-top: 20px;
             }
         </style>

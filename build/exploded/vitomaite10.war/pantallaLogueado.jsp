@@ -49,7 +49,7 @@
              <span class='dropdown-label'>Aficiones</span>
              <div class='dropdown-menu'>
                  <a href="ServletCargarAficiones">Añadir aficion</a>
-                 <a href="eliminarAfi.jsp">Eliminar aficion</a>
+                 <a href="ServletCargarAficionesUsuario">Eliminar aficion</a>
                  <a href="verAfi.jsp">Ver aficiones</a>
              </div>
          </div>
