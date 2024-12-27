@@ -89,7 +89,7 @@ public class ServletDetalles extends HttpServlet {
                 
                 request.setAttribute("aficiones", aficiones);
                 
-                //Comprobar si el usuario logueado de ha dado me gusta
+                //Comprobar si el usuario logueado le ha dado me gusta
                 String queryLike = "SELECT * FROM meGusta WHERE emailOrigen = ? AND emailDestino =?";
                 PreparedStatement psLike = conn.prepareStatement(queryLike);
                 psLike.setString(1, loggedEmail);

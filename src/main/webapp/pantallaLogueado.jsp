@@ -50,7 +50,7 @@
              <div class='dropdown-menu'>
                  <a href="ServletCargarAficiones">Añadir aficion</a>
                  <a href="ServletCargarAficionesUsuario">Eliminar aficion</a>
-                 <a href="ServletVerAficiones">Ver aficiones</a>
+                 <a href="ServletTodasAficiones">Ver aficiones</a>
              </div>
          </div>
          <div class="dropdown">
