@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,31 +32,18 @@ public class ServletTodasAficiones extends HttpServlet {
             return;
         }
 
-        System.out.println("ServletTodasAficiones ejecutándose");
-
         String query = "SELECT * FROM aficion";
-
         try (Connection conn = BD.getConnection()) {
-            if (conn != null && !conn.isClosed()) {
-                System.out.println("Conexión exitosa a la base de datos");
-            } else {
-                System.out.println("No se pudo establecer conexión con la base de datos");
-            }
 
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             List<String[]> aficiones = new ArrayList<>();
 
             while (rs.next()) {
                 String id = rs.getString("id");
                 String nombre = rs.getString("nombre");
-                System.out.println("ID: " + id + ", Nombre: " + nombre);
                 aficiones.add(new String[]{id, nombre});
-            }
-
-            if (aficiones.isEmpty()) {
-                System.out.println("No se encontraron aficiones en la base de datos");
             }
 
             request.setAttribute("aficiones", aficiones);

@@ -42,8 +42,8 @@ public class ServletBusquedaAficiones extends HttpServlet {
         String[] aficionesSeleccionadas = request.getParameterValues("aficiones");
         
         if(aficionesSeleccionadas == null || aficionesSeleccionadas.length == 0){
-            request.setAttribute("errorMessage", "Seleccione al menos una aficion");
-            request.getRequestDispatcher("busquedaAficiones.jsp").forward(request, response);
+            request.setAttribute("mensaje", "Seleccione al menos una aficion");
+            request.getRequestDispatcher("ServletTodasAficiones").forward(request, response);
         }
         
         StringBuilder query = new StringBuilder();

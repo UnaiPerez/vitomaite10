@@ -113,3 +113,14 @@ h2 {
 .btn-search:hover {
     background-color: #222256;
 }
+
+
+.mensaje {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+

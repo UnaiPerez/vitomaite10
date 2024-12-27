@@ -49,14 +49,14 @@
              <span class='dropdown-label'>Aficiones</span>
              <div class='dropdown-menu'>
                  <a href="ServletCargarAficiones">Añadir aficion</a>
-                 <a href="ServletCargarAficionesUsuario">Eliminar aficion</a>
-                 <a href="ServletTodasAficiones">Ver aficiones</a>
+                 <a href="ServletCargarAficiones">Eliminar aficion</a>
+                 <a href="ServletVerAficiones">Ver aficiones</a>
              </div>
          </div>
          <div class="dropdown">
              <span class="dropdown-label">Busqueda avanzada</span>
              <div class='dropdown-menu'>
-                 <a href='busquedaAficiones.jsp'>Aficiones</a>
+                 <a href='ServletTodasAficiones'>Aficiones</a>
                  <a href='busquedaGeolocalizacion.jsp'>Geolocalizacion</a>
              </div>
          </div>
