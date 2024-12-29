@@ -60,7 +60,7 @@
                  <a href='busquedaGeolocalizacion.jsp'>Geolocalizacion</a>
              </div>
          </div>
-         <a href="verLikes.jsp">Ver likes</a>
+         <a href="ServletVerLikes">Ver likes</a>
      </div>
      
      <%-- Main --%>
