@@ -28,7 +28,11 @@
                     if(nombre != null){
                 %>
                     <span id='username'>¡Hola, <%= nombre %>!</span>
-                    <img id='userPhoto' class='userPhoto' src="<%= foto %>" alt='Foto de <%= nombre %>'>
+                    <% if (!foto.startsWith("uploads/")) { %>
+                        <img src="data:image/jpeg;base64,<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                    <% } else { %>
+                        <img src="<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                    <% } %>
                     <form action="ServletLogout" method='post'>
                         <button type="submit" class='btn-logout'>Logout</button>
                     </form>

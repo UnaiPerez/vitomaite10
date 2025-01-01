@@ -28,7 +28,7 @@
                 <h2>Crear una cuenta:</h2>
                 <%-- Si hay mensaje de error se muestra aqui--%>
                 <%
-                    String mensaje = (String) request.getAttribute("error");
+                    String mensaje = (String) request.getAttribute("errorMessage");
                     if(mensaje != null){
                 %>
                 <div class="mensaje">
@@ -41,13 +41,13 @@
                 <form action="ServletRegistro" method="post" enctype="multipart/form-data">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
-                    
+    
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" name="password" required>
-                    
+    
                     <label for="name">Nombre</label>
                     <input type="text" id="name" name="name" required>
-                    
+    
                     <label for="city">Ciudad</label>
                     <select id="city" name="city" required>
                         <option value="" disabled selected>Selecciona una ciudad</option>
@@ -55,30 +55,31 @@
                         <option value="Bilbao">Bilbao</option>
                         <option value="Donosti">Donosti</option>
                     </select>
-                    
+    
                     <label for="age">Edad</label>
-                    <input type="number" id="age" min="18" max="100" required>
-                    
+                    <input type="number" id="age" name="age" min="18" max="100" required>
+    
                     <label for="latitud">Latitud</label>
-                    <input type="number" id="latitud" name="latitud" required>
-                    
+                    <input type="number" id="latitud" name="latitud" step="any" required>
+    
                     <label for="longitud">Longitud</label>
-                    <input type="number" id="longitud" name="longitud" required>
-                    
-                    <label for="gender">Genero</label>
-                    <select id="gender" for="gender" required>
-                        <option value="" disabled selected>Selecciona tu genero</option>
+                    <input type="number" id="longitud" name="longitud" step="any" required>
+    
+                    <label for="gender">Género</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Selecciona tu género</option>
                         <option value="M">M</option>
                         <option value="F">F</option>
                     </select>
-                    
+    
                     <label for="photo">Foto de Perfil</label>
                     <input type="file" name="photo" id="photo" accept="image/*" required>
-                    
+    
                     <button type="submit" class="btn-register">Registrarse</button>
-                    
-                    <p class="login-link">Ya tienes una cuenta? <a href="login.jsp">Iniciar sesion</a></p>
+    
+                    <p class="login-link">¿Ya tienes una cuenta? <a href="login.jsp">Iniciar sesión</a></p>
                 </form>
+
             </div>
         </main>
                 
