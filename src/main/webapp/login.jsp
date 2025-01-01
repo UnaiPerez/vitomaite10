@@ -54,7 +54,7 @@
                 
                 <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
-            <p class="register-link">¿No tienes cuenta? <a href="register.jsp">Regístrate aquí</a></p>
+            <p class="register-link">¿No tienes cuenta? <a href="registro.jsp">Regístrate aquí</a></p>
         </div>
     </main>
 
