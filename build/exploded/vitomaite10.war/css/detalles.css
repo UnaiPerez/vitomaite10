@@ -71,7 +71,7 @@ body {
     width: 100%;
 }
 
-#userDetails-container img.user-photo {
+#userDetails-container img.userPhoto {
     width: 150px;
     height: 150px;
     border-radius: 50%;

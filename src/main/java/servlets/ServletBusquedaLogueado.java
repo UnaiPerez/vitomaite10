@@ -66,11 +66,20 @@ public class ServletBusquedaLogueado extends HttpServlet {
                     String email = rs.getString("email");
                     int edad = rs.getInt("edad");
                     
-                    resultados.add("<div class='user-card'>"
-                            + "<img class='user-photo' src='"+foto+"' alt='foto del usuario'>"
-                            + "<h3>" + nombre + ", "+edad+"</h3>"
-                            + "<h4>"+ ciudad + "</h4>"
-                            + "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
+                    if (!foto.startsWith("uploads/")) {
+                        resultados.add("<div class='user-card'>" +
+                        "<img class='user-photo' src='data:image/jpeg;base64," + foto + "' alt='Foto usuario'>" +
+                        "<h3>" + nombre + ", " + edad + " años</h3>"+
+                        "<h4>"+ ciudad + "</h2>" +
+                        "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
+                    } else { 
+                        resultados.add("<div class='user-card'>" +
+                        "<img class='user-photo' src='" + foto + "' alt='Foto usuario'>" +
+                        "<h3>" + nombre + ", " + edad + " años</h3>"+
+                        "<h4>"+ ciudad + "</h2>" +
+                        "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
+                } 
+                   
                 }
                 
                 session.setAttribute("resultados", resultados);

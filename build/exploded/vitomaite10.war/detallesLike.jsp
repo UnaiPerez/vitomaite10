@@ -47,7 +47,11 @@
                     double longitud = (double) request.getAttribute("longitud");
                 %>
                 
-                <img src="<%=foto %>" alt='Foto de <%= nombre %>' class="user-photo">
+                <% if (!foto.startsWith("uploads/")) { %>
+                                    <img src="data:image/jpeg;base64,<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                            <% } else { %>
+                                    <img src="<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                            <% } %>
                 <h2><%= nombre %></h2>
                 <p><strong>Email:</strong> <%= email %></p>
                 <p><strong>Ciudad:</strong> <%= ciudad %></p>

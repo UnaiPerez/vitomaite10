@@ -48,7 +48,7 @@
             
      <%-- Funcionalidades --%>
      <div class='functionalities'>
-         <a href='modificarPerfil.jsp'>Modificar Perfil</a>
+         <a href='CargarPerfil'>Modificar Perfil</a>
          <div class='dropdown'>
              <span class='dropdown-label'>Aficiones</span>
              <div class='dropdown-menu'>

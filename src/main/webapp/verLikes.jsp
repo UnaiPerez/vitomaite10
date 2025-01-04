@@ -43,7 +43,11 @@
                 <div class="like-card">
                     <a href="ServletDetallesLikes?email=<%= email %>">
                         <div class="info">
-                            <img src="<%= foto %>" alt="foto de <%= nombre %>" class="user-photo">
+                            <% if (!foto.startsWith("uploads/")) { %>
+                                    <img src="data:image/jpeg;base64,<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                            <% } else { %>
+                                    <img src="<%= foto %>" alt="Foto de perfil" class="userPhoto">
+                            <% } %>
                             <h3><%= nombre %>, <%= edad %></h3>
                             <p><%= ciudad %></p>
                         </div>

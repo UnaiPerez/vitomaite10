@@ -60,12 +60,20 @@ public class ServletBusquedaBasica extends HttpServlet {
                 int edad = rs.getInt("edad");
                 String foto = rs.getString("foto");
                 String ciudad = rs.getString("ciudad");
-
-                resultados.add("<div class='user-card'>" +
+                if (!foto.startsWith("uploads/")) {
+                    resultados.add("<div class='user-card'>" +
+                        "<img class='user-photo' src='data:image/jpeg;base64," + foto + "' alt='Foto usuario'>" +
+                        "<h3>" + nombre + ", " + edad + " años</h3>"+
+                        "<h4>"+ ciudad + "</h2>" +
+                        "<a href='login.jsp'>Ver más detalles</a></div>");
+                    } else { 
+                        resultados.add("<div class='user-card'>" +
                         "<img class='user-photo' src='" + foto + "' alt='Foto usuario'>" +
                         "<h3>" + nombre + ", " + edad + " años</h3>"+
                         "<h4>"+ ciudad + "</h2>" +
                         "<a href='login.jsp'>Ver más detalles</a></div>");
+                }           
+
             }
 
             request.setAttribute("resultados", resultados);
