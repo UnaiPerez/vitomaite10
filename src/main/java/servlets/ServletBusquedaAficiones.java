@@ -83,13 +83,13 @@ public class ServletBusquedaAficiones extends HttpServlet {
                         "<img class='user-photo' src='data:image/jpeg;base64," + foto + "' alt='Foto usuario'>" +
                         "<h3>" + nombre + ", " + edad + " años</h3>"+
                         "<h4>"+ ciudad + "</h2>" +
-                        "<a href='login.jsp'>Ver más detalles</a></div>");
+                        "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
                     } else { 
                         resultados.add("<div class='user-card'>" +
                         "<img class='user-photo' src='" + foto + "' alt='Foto usuario'>" +
                         "<h3>" + nombre + ", " + edad + " años</h3>"+
                         "<h4>"+ ciudad + "</h2>" +
-                        "<a href='login.jsp'>Ver más detalles</a></div>");
+                        "<a href='ServletDetalles?email=" + email +"'>Ver mas detalles</a></div>");
                 }
                 }
                 

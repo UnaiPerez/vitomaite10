@@ -61,7 +61,7 @@
              <span class="dropdown-label">Busqueda avanzada</span>
              <div class='dropdown-menu'>
                  <a href='ServletTodasAficiones'>Aficiones</a>
-                 <a href='busquedaGeolocalizacion.jsp'>Geolocalizacion</a>
+                 <a href='BusquedaGeo.jsp'>Geolocalizacion</a>
              </div>
          </div>
          <a href="ServletVerLikes">Ver likes</a>
