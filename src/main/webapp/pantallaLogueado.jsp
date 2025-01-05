@@ -65,6 +65,7 @@
              </div>
          </div>
          <a href="ServletVerLikes">Ver likes</a>
+         <a href="ServletMatching">Buscar matching</a>
      </div>
      
      <%-- Main --%>
